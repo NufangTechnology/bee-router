@@ -70,6 +70,6 @@ class Handler implements HandlerInterface
      */
     public function callMethod($context, $parameters = null)
     {
-        return call_user_func($this->handler, $context, $parameters);
+        return call_user_func([new $this->handler[0], $this->handler[1]], $context, $parameters);
     }
 }
