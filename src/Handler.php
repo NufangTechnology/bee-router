@@ -1,8 +1,6 @@
 <?php
 namespace Bee\Router;
 
-use Bee\Http\Context;
-
 /**
  * Handler
  *
@@ -66,11 +64,11 @@ class Handler implements HandlerInterface
     /**
      * 执行路由项业务
      *
-     * @param Context $context
+     * @param mixed $context
      * @param mixed $parameters
      * @return mixed
      */
-    public function callMethod( $context, $parameters = null)
+    public function callMethod($context, $parameters = null)
     {
         return call_user_func($this->handler, $context, $parameters);
     }
