@@ -64,12 +64,15 @@ class Handler implements HandlerInterface
     /**
      * 执行路由项业务
      *
-     * @param mixed $context
+     * @param $application
      * @param mixed $parameters
      * @return mixed
      */
-    public function callMethod($context, $parameters = null)
+    public function callMethod($application, $parameters = null)
     {
-        return call_user_func([new $this->handler[0], $this->handler[1]], $context, $parameters);
+        $class = new $this->handler[0];
+        $class->setApp($application);
+
+        return call_user_func([$class, $this->handler[1]], $parameters);
     }
 }
