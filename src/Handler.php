@@ -67,12 +67,17 @@ class Handler implements HandlerInterface
      * @param $application
      * @param mixed $parameters
      * @return mixed
+     * @throws Exception
      */
     public function callMethod($application, $parameters = null)
     {
         $class = new $this->handler[0];
-        $class->setApp($application);
 
-        return call_user_func([$class, $this->handler[1]], $parameters);
+        if (method_exists($class, $this->handler[1])) {
+            $class->setApp($application);
+            return call_user_func([$class, $this->handler[1]], $parameters);
+        }
+
+        throw new Exception("Call to undefined method {$this->handler[0]}::{$this->handler[1]}()");
     }
 }
