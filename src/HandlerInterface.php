@@ -1,8 +1,6 @@
 <?php
 namespace Bee\Router;
 
-use Bee\Http\Context;
-
 /**
  * Interface HandlerInterface
  *
@@ -13,9 +11,9 @@ interface HandlerInterface
     /**
      * 执行路由项业务
      *
-     * @param Context $context
+     * @param $context
      * @param mixed $parameters
      * @return mixed
      */
-    public function callMethod(Context $context, $parameters = null);
+    public function callMethod($application, $parameters = null);
 }
